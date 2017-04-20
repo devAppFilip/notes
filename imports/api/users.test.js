@@ -1,4 +1,4 @@
-import Meteor from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import expect from 'expect';
 
 import { validateNewUser } from './users';
@@ -19,6 +19,20 @@ if(Meteor.isServer){
       const res = validateNewUser(testUser);
 
       expect(res).toBe(true);
+    });
+
+    it('should reject invalid e-mail', function() {
+      const testUser = {
+        emails: [
+          {
+            address: 'invalid,email'
+          }
+        ]
+      }
+
+      expect(() => {
+        validateNewUser(testUser);
+      }).toThrow();
     });
   });
 }

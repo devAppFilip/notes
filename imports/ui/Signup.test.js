@@ -7,7 +7,7 @@ import {Signup} from './Signup';
 
 if(Meteor.isClient) {
 
-  describe('signup', function() {
+  describe('Signup', function() {
 
     it('should show error messages', function() {
       const error = 'Test error';

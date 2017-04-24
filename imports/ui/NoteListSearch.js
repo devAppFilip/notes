@@ -1,6 +1,8 @@
 import React from 'react';
+import { createContainer } from 'meteor/react-meteor-data';
+import { Session } from 'meteor/session';
 
-export default class NoteListSearch extends React.Component {
+export class NoteListSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,15 +13,24 @@ export default class NoteListSearch extends React.Component {
   onSearchChange(e) {
     const search = e.target.value;
     this.setState({search});
-    Session.set('search', search);
+    this.props.Session.set('search', search);
   }
 
   render() {
     return(
       <div className="item-list__search">
         <input type="text" placeholder="Search notes..." value={this.state.search} onChange={this.onSearchChange.bind(this)}/>
-        <p>{this.state.search}</p>
       </div>
     );
   };
 }
+
+NoteListSearch.propTypes = {
+  Session: React.PropTypes.object.isRequired
+}
+
+export default createContainer(() => {
+  return {
+    Session: Session
+  }
+}, NoteListSearch);

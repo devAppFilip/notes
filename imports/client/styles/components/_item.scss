@@ -10,7 +10,13 @@
 .item-list__header {
   display: flex;
   flex-direction: column;
-  padding: $space;
+  padding: $space $space 0 $space;
+}
+
+.item-list__search {
+  display: flex;
+  flex-direction: column;
+  padding: 0 $space $space $space;
 }
 
 // Item

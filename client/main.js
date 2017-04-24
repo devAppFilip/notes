@@ -17,6 +17,7 @@ Tracker.autorun(() => {
 Tracker.autorun(() => {
   const selectedNoteId = Session.get('selectedNoteId');
   Session.set('isNavOpen', false);
+  Session.set('search', '');
 
   if(selectedNoteId) {
     browserHistory.replace(`/dashboard/${selectedNoteId}`);
@@ -32,5 +33,6 @@ Tracker.autorun(() => {
 Meteor.startup(() => {
   Session.set('selectedNoteId', undefined);
   Session.set('isNavOpen', false);
+  Session.set('search', '');
   ReactDOM.render(routes, document.getElementById('app'));
 });
